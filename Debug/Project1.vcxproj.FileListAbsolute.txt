@@ -1,2 +1,3 @@
 E:\workCpp\rose\Project1\Debug\Project1.exe
 C:\Users\Administrator\Desktop\Draw-a-rose-main\Debug\Project1.exe
+C:\Users\Administrator\Documents\Draw-a-rose\Debug\Project1.exe
