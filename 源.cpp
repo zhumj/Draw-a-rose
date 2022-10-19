@@ -1,11 +1,11 @@
 #include <graphics.h>
 #include <conio.h>//_getch();
 #include "rose.h"
-
 #include <mmsystem.h>//mci库头文件
 #pragma comment(lib,"winmm.lib")
 
- 
+#include <iostream>
+using namespace std;
 
 void sayToYou();	//打印情书的内容
 
@@ -46,35 +46,31 @@ void sayToYou()
 		_T("目光所致"),
 		_T("也是你"),
 		_T(""),
-		_T("  亲爱的，生日快乐！")
+		_T(" 亲爱的，生日快乐！")
 	};
-
-	//浪漫字体颜色（粉色）
-	settextcolor(RGB(0xdb, 0x70, 0x93));
-	//settextcolor(RGB(219,112,147));
-
-	//浪漫字体
-	settextstyle(23, 0, _T("Matura MT Script Capitals"));//字号，字宽，字体
-
-
-	//爱情背景音乐
-	//mciSendString(_T("open background_warm_love.mp3 alias love"), 0, 0, 0);
-	//mciSendString(_T("play love repeat"), 0, 0, 0);//重复播放
 
 	for (int i = 0; i < 17; i++)
 	{
-		if (i >= 16)
+		int length = (lstrlen(story[i]) * sizeof(TCHAR)) / 2;
+		cout << length << endl;
+		for (int k = 0; k < length; k++)
 		{
-			settextstyle(30, 0, _T("Matura MT Script Capitals"));
-			settextcolor(RED);
-			//settextcolor(RGB(255,0,0));
-
-			outtextxy(x, y, story[i]);
-			y += 25;
-			continue;//结束本次循环
+			if (i >= 16)
+			{
+				settextstyle(36, 0, _T("Matura MT Script Capitals"));
+				settextcolor(RED);
+				outtextxy(x + k * 36, y + i * 25, story[i][k]);
+				Sleep(500);
+			}
+			else
+			{
+				//浪漫字体
+				settextstyle(23, 0, _T("Matura MT Script Capitals"));//字号，字宽，字体
+				//浪漫字体颜色（粉色）
+				settextcolor(RGB(0xdb, 0x70, 0x93));
+				outtextxy(x + k * 23, y + i * 25, story[i][k]);
+				Sleep(300);
+			}
 		}
-		outtextxy(x, y, story[i]);
-		y += 25;
-		Sleep(1500);
 	}
 }
